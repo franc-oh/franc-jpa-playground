@@ -1,0 +1,61 @@
+buildscript {
+    ext {
+        springBootVersion = '3.2.1'
+        lombokVersion = '1.18.26'
+        mybatisVersion = '3.0.3'
+        junitVersion = '5.10.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'war'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group 'com.franc'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    runtimeClasspath {
+        extendsFrom developmentOnly // Devtools 설정
+    }
+    compileOnly {
+        extendsFrom annotationProcessor // Lombok 설정
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mapstruct:mapstruct:1.6.2'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    runtimeOnly 'com.h2database:h2'
+
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation"org.junit.jupiter:junit-jupiter:$junitVersion"
+    testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+}
+
+
+test {
+    useJUnitPlatform()
+}

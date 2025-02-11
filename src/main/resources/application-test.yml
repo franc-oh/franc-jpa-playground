@@ -1,0 +1,41 @@
+server:
+  port: 8081
+
+spring:
+  config:
+    activate:
+      on-profile: "test"
+
+  # DB연결 설정
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
+    driver-class-name: org.h2.Driver
+    username: jpa
+    password: jpa1234
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # (create, create-drop, update, validate, none)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
+        jdbc:
+          batch_size: 50
+    open-in-view: false  # Prevents potential memory issues in web applications
+
+  # H2DB 설정
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+# JPA 로깅 설정
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

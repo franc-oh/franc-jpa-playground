@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /franc/api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: franc-jpa-playground
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  web:
+    resources:
+      add-mappings: false
