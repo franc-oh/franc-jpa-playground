@@ -1,5 +1,7 @@
 package com.franc.domain.account.domain;
 
+import com.franc.domain.account.domain.code.Status;
+import com.franc.domain.account.domain.code.StatusConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,8 +27,9 @@ public class Account {
     @Column(nullable = false, length = 100)
     private String name; // 회원이름
 
-    @Column(length = 50)
-    private String status; // 상태
+    @Convert(converter = StatusConverter.class)
+    @Column(nullable = false)
+    private Status status; // 상태
 
     @Column(unique = true, nullable = false, length = 150)
     private String email;
