@@ -16,7 +16,7 @@ spring:
   # JPA 설정
   jpa:
     hibernate:
-      ddl-auto: create-drop # (create, create-drop, update, validate, none)
+      ddl-auto: none # (create, create-drop, update, validate, none)
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
@@ -33,6 +33,15 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+
+  sql:
+    init:
+      schema-locations: classpath:init-data/schema.sql
+      data-locations: classpath:init-data/data.sql
+      username: jpa
+      password: jpa1234
+      mode: always
+      encoding: UTF-8
 
 # JPA 로깅 설정
 logging:

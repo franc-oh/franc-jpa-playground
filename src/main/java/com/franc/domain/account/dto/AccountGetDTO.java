@@ -1,6 +1,7 @@
 package com.franc.domain.account.dto;
 
 import com.franc.domain.account.domain.Account;
+import com.franc.domain.account.domain.code.Status;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public record AccountGetDTO() {
      */
     public record Response(Long accountId,
                            String name,
-                           String status,
+                           Integer status,
                            String email,
                            Boolean vipYn,
                            LocalDateTime joinAt) {
@@ -33,7 +34,7 @@ public record AccountGetDTO() {
             return new AccountGetDTO.Response(
                     account.getAccountId(),
                     account.getName(),
-                    account.getStatus(),
+                    account.getStatus().getCode(),
                     account.getEmail(),
                     account.getVipYn(),
                     account.getInsertAt()
